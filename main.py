@@ -70,8 +70,12 @@ async def handle_docs_photo(message):
         await bot.answer_callback_query(callback_query.id)
         # await bot.send_photo(chat_id=-1001277471725, photo=photo)
         photo = InputFile(create_dir + '\\' + path_image.split('\\')[-1])
-        await bot.send_photo(chat_id=-1001277471725, photo=photo)
-        # await bot.send_message(chat_id=-1001277471725, text=message)
+        # await bot.send_photo(chat_id=-1001277471725, photo=photo)
+
+        await bot.forward_message(chat_id=-1001277471725, from_chat_id=message.chat.id,
+                                  message_id=callback_query.message.message_id-1)
+
+
 
 
 if __name__ == '__main__':
